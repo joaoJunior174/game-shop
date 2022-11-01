@@ -1,18 +1,18 @@
 import { IsNotEmpty } from 'class-validator';
 
-export class CreateUserDto {
+export class CreateProductDto {
   @IsNotEmpty()
   name: string;
 
   @IsNotEmpty()
-  username: string;
+  brand: string;
 
   @IsNotEmpty()
-  password: string;
+  url_key: string;
 
   @IsNotEmpty()
-  nickname: string;
+  original_price: number;
 
   @IsNotEmpty()
-  roles: string;
+  custom_price: number;
 }

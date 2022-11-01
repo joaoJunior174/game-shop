@@ -1,0 +1,55 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Product {
+  name: String!
+  brand: String!
+  url_key: String!
+  original_price: Float!
+  custom_price: Float!
+}
+
+type Category {
+  name: String!
+  description: String!
+  url_key: String!
+  parent_id: String!
+  products: [Product!]
+  children_url: [String!]
+}
+
+type Query {
+  product(name: String!): Product!
+  products: [Product!]!
+  cateogry(url_key: String!): Category!
+  categories: [Category!]!
+}
+
+type Mutation {
+  createProductGraphQL(data: CreateProductInput!): Product!
+  createCategoryGraphQL(data: CreateCategoryInputDto!): Category!
+  updateByUrlKey(data: CreateCategoryInputDto!): Category!
+  deleteCategoryByUrlKey(data: DeleteCategoryInputDto!): Category!
+}
+
+input CreateProductInput {
+  name: String!
+  brand: String!
+  url_key: String!
+  original_price: Float!
+  custom_price: Float!
+}
+
+input CreateCategoryInputDto {
+  name: String!
+  description: String!
+  url_key: String!
+  parent_id: String!
+  products: [CreateProductInput!]!
+  children_url: [String!]
+}
+
+input DeleteCategoryInputDto {
+  url_key: String!
+}
