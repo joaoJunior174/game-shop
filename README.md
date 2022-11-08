@@ -27,7 +27,7 @@
 Este projeto tem como objetivo, apresentar um fluxo simples de compra (sem método de pagamento) de um game. As funcionalidades são criar cadastro/login com geração e validação de token, rotas para criação de produto e categoria via GraphQL, bem como quote e order. O banco utilizado foi o MongoDB. Todas as mutations ou Queries podem ser acessadas no link http://localhost:5000/graphql. Esse projeto tem seu funcionamento exclusivamente via backend, não existe sua versão front-end e nem testes unitários com Jest.
 
 Abaixo, é possívle ver alguns exemplos de mutation e query:
-
+```
 {
   product(name: "Cyberpunk 2077") {
     name
@@ -110,7 +110,7 @@ mutation {
   }
 }
 
-
+```
 
 ## Installation
 
