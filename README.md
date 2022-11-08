@@ -24,8 +24,93 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-Este projeto tem como objetivo, apresentar um fluxo simples de compra (sem método de pagamento) de um game. As funcionalidades são criar cadastro/login com geração e validação de token, rotas para criação de produto e categoria via GraphQL, bem como quote e order. O banco utilizado foi o MongoDB. Todas as mutations ou Queries podem ser acessadas no link http://localhost:5000/graphql. Esse projeto tem seu funcionamento exclusivamente via backend, não existe sua versão front-end e nem testes unitários com Jest
+Este projeto tem como objetivo, apresentar um fluxo simples de compra (sem método de pagamento) de um game. As funcionalidades são criar cadastro/login com geração e validação de token, rotas para criação de produto e categoria via GraphQL, bem como quote e order. O banco utilizado foi o MongoDB. Todas as mutations ou Queries podem ser acessadas no link http://localhost:5000/graphql. Esse projeto tem seu funcionamento exclusivamente via backend, não existe sua versão front-end e nem testes unitários com Jest.
+
+Abaixo, é possívle ver alguns exemplos de mutation e query:
+
+{
+  product(name: "Cyberpunk 2077") {
+    name
+    custom_price
+    original_price
+  }
+}
+
+mutation{
+  createProductGraphQL(data: {
+    name: "Halo 5",
+    brand: "Microsoft",
+    url_key: "halo.url",
+    original_price: 200.00,
+    custom_price: 180.00
+  }) {
+    original_price
+    name
+    brand
+  }
+}
+
+{
+  cateogry(url_key: "root.url") {
+    parent_id
+    name
+    url_key
+    children_url
+    description
+  }
+}
+
+mutation{
+  createCategoryGraphQL(data:{
+    name: "Computer",
+    description: "Jogos para computador",
+    url_key: "pc.url",
+    parent_id: "root.url",
+    children_url: [
+      "steam.url",
+      "epic.url"
+    ],
+    products: []
+  }){
+    name
+    description
+    url_key
+    children_url
+    products {
+      name
+      url_key
+    }
+  }
+
+}
+
+mutation {
+  deleteCategoryByUrlKey(data: {
+    url_key: "console.url"
+  }) {
+    url_key
+  }
+}
+
+mutation {
+  createQuote(
+    data: {
+      products: ["residentevil.url"]
+      price_total: 100.00
+      discount_amount: 20.00
+      cart_key: "teste5"
+      user: "joaoureliofrancisco"
+    }
+  ) {
+    products
+    price_total
+    discount_amount
+    cart_key
+    user
+  }
+}
+
+
 
 ## Installation
 
