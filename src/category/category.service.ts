@@ -1,8 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Product, ProductDocument } from 'src/product/schemas/product.schema';
-import { CategoryObjectDto } from './dto/category-object.dto';
 import { CreateCategoryInputDto } from './dto/create-category.input';
 import { DeleteCategoryInputDto } from './dto/delete-category.input';
 import { Category, CategoryDocument } from './schemas/category.schema';

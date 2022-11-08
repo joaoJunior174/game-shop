@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, CacheModule } from '@nestjs/common';
 import { UserModule } from './user/user.module';
 import { APP_GUARD } from '@nestjs/core';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -8,8 +8,13 @@ import { ProductModule } from './product/product.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { CategoryModule } from './category/category.module';
+import { QuoteModule } from './quote/quote.module';
+import { Quote } from './quote';
+import { OrderModule } from './order/order.module';
+import { Order } from './order';
 @Module({
   imports: [
+    CacheModule.register(),
     UserModule,
     MongooseModule.forRoot('mongodb://127.0.0.1:27017'),
     GraphQLModule.forRoot<ApolloDriverConfig>({
@@ -19,12 +24,16 @@ import { CategoryModule } from './category/category.module';
     AuthModule,
     ProductModule,
     CategoryModule,
+    QuoteModule,
+    OrderModule,
   ],
   providers: [
     {
       provide: APP_GUARD,
       useClass: RolesGuard,
     },
+    Quote,
+    Order,
   ],
 })
 export class AppModule {}

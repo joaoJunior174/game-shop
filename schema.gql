@@ -19,18 +19,40 @@ type Category {
   children_url: [String!]
 }
 
+type Quote {
+  products: [String!]!
+  price_total: Float!
+  discount_amount: Float!
+  cart_key: String!
+  user: String!
+}
+
+type Order {
+  order_key: String!
+  cart_key: String!
+  total_value: Float!
+  payment_method: String!
+  status: String!
+  user: String!
+}
+
 type Query {
   product(name: String!): Product!
   products: [Product!]!
   cateogry(url_key: String!): Category!
   categories: [Category!]!
+  quote(cart_key: String!): Quote!
+  generateQuote(key: String!): String!
+  order(order_key: String!): Order!
 }
 
 type Mutation {
   createProductGraphQL(data: CreateProductInput!): Product!
   createCategoryGraphQL(data: CreateCategoryInputDto!): Category!
-  updateByUrlKey(data: CreateCategoryInputDto!): Category!
+  updateByUrlKey(data: CreateQuoteInputDto!): Quote!
   deleteCategoryByUrlKey(data: DeleteCategoryInputDto!): Category!
+  createQuote(data: CreateQuoteInputDto!): Quote!
+  createOrder(data: CreateOrderInputDto!): Order!
 }
 
 input CreateProductInput {
@@ -50,6 +72,23 @@ input CreateCategoryInputDto {
   children_url: [String!]
 }
 
+input CreateQuoteInputDto {
+  products: [String!]!
+  price_total: Float!
+  discount_amount: Float!
+  cart_key: String!
+  user: String!
+}
+
 input DeleteCategoryInputDto {
   url_key: String!
+}
+
+input CreateOrderInputDto {
+  order_key: String!
+  cart_key: String!
+  total_value: Float!
+  payment_method: String!
+  status: String!
+  user: String!
 }
